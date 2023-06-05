@@ -1,11 +1,11 @@
-#' Point to local whisper Unix Executable File (.exe)
+#' Point to local Whisper Unix Executable File (.exe)
 #'
-#' Function to set an option that points to the local whisper Executable File
+#' Function to set an option that points to the local Whisper Executable File
 #' \code{whisper}.
 #'
-#' @param path path to the local whisper Executable File
+#' @param path path to the local Whisper Executable File
 #'
-#' @details List of possible file path locations for the local whisper
+#' @details List of possible file path locations for the local Whisper
 #'   Executable File
 #' \describe{
 #'    \item{Linux}{/usr/bin/whisper, /usr/local/bin/whisper}
@@ -27,7 +27,7 @@ set_whisper_path <- function(path) {
   options("path_to_whisper" = path)
 }
 
-# Prepare to use whisper by checking if it exists locally.
+# Prepare to use Whisper by checking if it exists locally.
 # Check option "path_to_whisper". If it's NULL, call find_whisper(), which
 # will try to determine the local path to Executable File "whisper". If
 # find_whisper() is successful, the path to "whisper" will be assigned to option
@@ -73,13 +73,13 @@ process_whisper_path <- function(path) {
 
 # List obj containing known locations of "whisper"
 whisper_paths_to_check <- list(
-  "Linux" = c("/usr/bin/tts",
-              "/usr/local/bin/tts"),
-  "Darwin" = c("/opt/homebrew/Caskroom/miniforge/base/bin/tts"),
-  "Windows" = c("C:\\Program Files\\tts")
+  "Linux" = c("/usr/bin/whisper",
+              "/usr/local/bin/whisper"),
+  "Darwin" = c("/opt/homebrew/Caskroom/miniforge/base/bin/whisper"),
+  "Windows" = c("C:\\Program Files\\whisper")
 )
 
-# Error message thrown if coqui "tts" cannot be found
+# Error message thrown if "whisper" cannot be found
 whisper_path_missing <- paste(
   "Whisper required for robust Speech-to-Text generation.",
   "Cannot determine file path to whisper",

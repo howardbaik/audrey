@@ -1,7 +1,9 @@
-# TODO:
 # - Figure out output_dir and output_format arguments in command
-# - Forumate out error/success message
+# 'ouput_dir' can be either "./folder_name" OR "folder_name"
+# 'output_format' can be either 'txt', 'vtt', 'srt', 'tsv', 'json', 'all'
+
 # - Find out the audio input file types
+# m4a, mp3, webm, mp4, mpga, wav, mpeg
 
 whisper <- function(audio_file,
                     exec_path,
@@ -17,8 +19,8 @@ whisper <- function(audio_file,
                                   # silence console output
                                   stdout = NULL))
   if (res != 0) {
-    # some error message
+    cli::cli_alert_danger("Failed to transcribe speech in '{audio_file}'")
   } else {
-    # some success message
+    cli::cli_alert_success("Successfully transcribed speech in '{audio_file}'")
   }
 }

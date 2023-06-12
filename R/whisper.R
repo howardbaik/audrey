@@ -6,15 +6,18 @@
 # m4a, mp3, webm, mp4, mpga, wav, mpeg
 
 whisper <- function(audio_file,
-                    exec_path,
                     model_name,
+                    audio_lang,
                     output_dir,
                     output_format) {
+  use_whisper()
+  whisper_path <- getOption("path_to_whisper")
+
   whisper_args <- paste0(audio_file, " ", "--model", " ", model_name, " ",
                          "--fp16 False", " ", "--language", " ", audio_lang, " ",
                          "--output_dir", " ", output_dir, " ", "--output_format", " ", output_format)
   # store error code (0 for success)
-  res <- withr::with_path("/opt/homebrew/Caskroom/miniforge/base/bin",
+  res <- withr::with_path(process_whisper_path(whisper_path),
                           system2("whisper", whisper_args,
                                   # silence console output
                                   stdout = NULL))

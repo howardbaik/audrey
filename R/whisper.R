@@ -10,6 +10,7 @@ whisper <- function(audio_file,
                     audio_lang,
                     output_dir,
                     output_format) {
+  # Setup
   use_whisper()
   whisper_path <- getOption("path_to_whisper")
 

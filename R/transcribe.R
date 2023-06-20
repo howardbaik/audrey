@@ -1,6 +1,6 @@
 #' Transcribe in the original language
 #'
-#' Transcribe speech in audio files (Speech recognition).
+#' Perform speech recognition by converting spoken language from audio file into written text in its original language.
 #'
 #' @param audio_file Input audio file: `"m4a"`, `"mp3"`, `"webm"`, `"mp4"`, `"mpga"`, `"wav"`, or `"mpeg"`
 #' @param model_name Name of the Whisper model. Models include:
@@ -17,8 +17,8 @@
 #' There are five model sizes, four with English-only versions, offering speed and accuracy tradeoffs. The `.en` models for
 #' English speaking audio tend to perform better, especially `tiny.en` and `base.en`.
 #'
-#' See [Avaiable models and languages](https://github.com/openai/whisper#available-models-and-languages) for the
-#' names of the available models and their approximate memory requirements and relative speed.
+#' See ["Avaiable models and languages"](https://github.com/openai/whisper#available-models-and-languages) section
+#' in the README for the names of the available models and their approximate memory requirements and relative speed.
 #'
 #' @return A message indicating whether the function was a success or failure
 #' @export
@@ -26,10 +26,22 @@
 #' @examples
 #' \dontrun{
 #' # English audio
-#' transcribe("sample-english.mp3", output_dir = ".")
+#' english1 <- system.file("extdata", "sample-english1.mp3", package = "audrey")
+#' english2 <- system.file("extdata", "sample-english2.mp3", package = "audrey")
+#'
+#' # "Other forms of moral economy are more informal"
+#' transcribe(english2, output_dir = ".")
+#'
+#' # "It is so named because it was designed and implemented in Dartmouth College"
+#' transcribe(english2, output_dir = ".")
+#'
 #'
 #' # Non-English audio
-#' transcribe("sample-japanese.mp3", audio_lang = "Japanese", output_dir = ".")
+#' japanese <- system.file("extdata", "sample-japanese.wav", package = "audrey")
+#' transcribe(japanese, audio_lang = "Japanese", output_dir = ".")
+#'
+#' korean <- system.file("extdata", "sample-korean.wav", package = "audrey")
+#' transcribe(korean, audio_lang = "Korean", output_dir = ".")
 #' }
 #'
 transcribe <- function(audio_file,

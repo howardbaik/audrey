@@ -40,3 +40,8 @@ originally spoken in a non-English language:
 # Korean to English
 translate("sample-korean.mp3", audio_lang = "Korean", output_dir = ".")
 ```
+
+## Acknowledgements
+
+- OpenAI Whisper model
+- Source of audio files: <https://commonvoice.mozilla.org/en/datasets>

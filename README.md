@@ -1,21 +1,21 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rwhisper
+# audrey
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-rwhisper serves as a client to [OpenAI
+audrey serves as a client to [OpenAI
 Whisper](https://github.com/openai/whisper), a general-purpose speech
 recognition model.
 
 ## Installation
 
-You can install the development version of rwhisper from
+You can install the development version of audrey from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("howardbaek/rwhisper")
+devtools::install_github("howardbaek/audrey")
 ```

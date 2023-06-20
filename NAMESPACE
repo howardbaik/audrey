@@ -3,3 +3,5 @@
 export(set_whisper_path)
 importFrom(cli,cli_alert_danger)
 importFrom(cli,cli_alert_success)
+importFrom(tools,file_path_sans_ext)
+importFrom(withr,with_path)

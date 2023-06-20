@@ -1,12 +1,21 @@
-# - Figure out output_dir and output_format arguments in command
-# 'ouput_dir' can be either "./folder_name" OR "folder_name"
-# 'output_format' can be either 'txt', 'vtt', 'srt', 'tsv', 'json', 'all'
-
-# - Find out the audio input file types
-# m4a, mp3, webm, mp4, mpga, wav, mpeg
-
-# model_name: "medium" takes longer to process than "small", but can be more accurate.
-
+#' Translate to English
+#'
+#' Translate audio in a different language to English.
+#'
+#' @inheritParams transcribe
+#'
+#' @return A message indicating whether the function was a success or failure
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' # Korean to English
+#' translate("sample-korean.mp3", audio_lang = "Korean", output_dir = ".")
+#'
+#' # Japanese to English
+#' translate("sample-japanese.mp3", audio_lang = "Japanese", output_dir = ".")
+#' }
+#'
 translate <- function(audio_file,
                       model_name = "small",
                       audio_lang,

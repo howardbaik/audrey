@@ -1,6 +1,7 @@
 #' Translate to English
 #'
-#' Convert audio spoken in a non-English language into English through translation.
+#' Convert audio spoken in a non-English language into English
+#' through translation.
 #'
 #' @inheritParams transcribe
 #'
@@ -34,8 +35,10 @@ translate <- function(audio_file,
   # store error code (0 for success)
   res <- withr::with_path(process_whisper_path(whisper_path),
                           system2("whisper", whisper_args,
-                                  # silence console output
-                                  stdout = NULL))
+                                  # capture the output in a character vector
+                                  stdout = TRUE))
+  # remove timestamp from output
+  res <- trimws(gsub("\\[.*?\\]", "", res))
 
   # figure out output file name
   audio_file_processed <- tools::file_path_sans_ext(basename(audio_file))
@@ -47,4 +50,6 @@ translate <- function(audio_file,
     cli::cli_alert_success("Successfully translated {audio_lang} in '{audio_file}' to English")
     cli::cli_alert_info("Stored output in '{output_name}'")
   }
+
+  res
 }

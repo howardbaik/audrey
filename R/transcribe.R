@@ -1,24 +1,30 @@
 #' Transcribe in the original language
 #'
-#' Perform speech recognition by converting spoken language from audio file into written text in its original language.
+#' Perform speech recognition by converting spoken language from audio file into
+#' written text in its original language.
 #'
-#' @param audio_file Input audio file: `"m4a"`, `"mp3"`, `"webm"`, `"mp4"`, `"mpga"`, `"wav"`, or `"mpeg"`
+#' @param audio_file Input audio file: `"m4a"`, `"mp3"`, `"webm"`, `"mp4"`,
+#'   `"mpga"`, `"wav"`, or `"mpeg"`
 #' @param model_name Name of the Whisper model. Models include:
 #' * `"tiny.en"`, `"tiny"`
 #' * `"base.en"`, `"base"`
 #' * `"small.en"`, `"small"`
 #' * `"medium.en"`, `"medium"`
 #' * `"large-v1"`, `"large-v2"`, `"large"`
-#' @param audio_lang Language spoken in audio. Specify `"None"` to perform language detection.
+#' @param audio_lang Language spoken in audio. Specify `"None"` to perform
+#'   language detection.
 #' @param output_dir Directory to save the output.
-#' @param output_format Desired format of the output file: `"txt"`, `"vtt"`, `"srt"`, `"tsv"`, `"json"`, or `"all"`.
+#' @param output_format Desired format of the output file: `"txt"`, `"vtt"`,
+#'   `"srt"`, `"tsv"`, `"json"`, or `"all"`.
 #'
-#' @details
-#' There are five model sizes, four with English-only versions, offering speed and accuracy tradeoffs. The `.en` models for
-#' English speaking audio tend to perform better, especially `tiny.en` and `base.en`.
+#' @details There are five model sizes, four with English-only versions,
+#' offering speed and accuracy tradeoffs. The `.en` models for English speaking
+#' audio tend to perform better, especially `tiny.en` and `base.en`.
 #'
-#' See ["Avaiable models and languages"](https://github.com/openai/whisper#available-models-and-languages) section
-#' in the README for the names of the available models and their approximate memory requirements and relative speed.
+#' See ["Avaiable models and
+#' languages"](https://github.com/openai/whisper#available-models-and-languages)
+#' section in the README for the names of the available models and their
+#' approximate memory requirements and relative speed.
 #'
 #' @return A message indicating whether the function was a success or failure
 #' @export
@@ -32,7 +38,8 @@
 #' # "Other forms of moral economy are more informal"
 #' transcribe(english2, output_dir = ".")
 #'
-#' # "It is so named because it was designed and implemented in Dartmouth College"
+#' # "It is so named because it was designed and
+#' #  implemented in Dartmouth College"
 #' transcribe(english2, output_dir = ".")
 #'
 #'
@@ -59,10 +66,13 @@ transcribe <- function(audio_file,
   # Run model and store error code (0 for success)
   res <- withr::with_path(process_whisper_path(whisper_path),
                           system2("whisper", whisper_args,
-                                  # silence console output
-                                  stdout = NULL))
+                                  # capture the output in a character vector
+                                  stdout = TRUE))
+  # remove timestamp from output
+  res <- trimws(gsub("\\[.*?\\]", "", res))
 
-  # Figure out output file name
+
+  # figure out output file name
   audio_file_processed <- tools::file_path_sans_ext(basename(audio_file))
   output_name <- paste0(audio_file_processed, ".", output_format)
 
@@ -72,4 +82,6 @@ transcribe <- function(audio_file,
     cli::cli_alert_success("Successfully transcribed speech in '{audio_file}'")
     cli::cli_alert_info("Stored output in '{output_name}'")
   }
+
+  res
 }

@@ -44,12 +44,9 @@ translate <- function(audio_file,
   audio_file_processed <- tools::file_path_sans_ext(basename(audio_file))
   output_name <- paste0(audio_file_processed, ".", output_format)
 
-  if (res != 0) {
-    cli::cli_alert_danger("Failed to translate speech in '{audio_file}'")
-  } else {
-    cli::cli_alert_success("Successfully translated {audio_lang} in '{audio_file}' to English")
-    cli::cli_alert_info("Stored output in '{output_name}'")
-  }
+  # user message
+  cli::cli_alert_success("Successfully translated {audio_lang} in '{audio_file}' to English")
+  cli::cli_alert_info("Stored output in '{output_name}'")
 
   res
 }

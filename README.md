@@ -8,7 +8,9 @@
 
 audrey serves as a client to [OpenAI
 Whisper](https://github.com/openai/whisper), a general-purpose speech
-recognition model.
+recognition model is trained on a large dataset of diverse audio. It can
+perform multilingual speech recognition, speech translation, and
+language identification.
 
 ## Installation
 
@@ -20,6 +22,30 @@ You can install the development version of audrey from
 devtools::install_github("howardbaek/audrey")
 ```
 
+Importantly, you need to download Whisper with the following command:
+
+    pip install -U openai-whisper
+
+You also need the command-line tool `ffmpeg` on your system:
+
+    # on Ubuntu or Debian
+    sudo apt update && sudo apt install ffmpeg
+
+    # on Arch Linux
+    sudo pacman -S ffmpeg
+
+    # on MacOS using Homebrew (https://brew.sh/)
+    brew install ffmpeg
+
+    # on Windows using Chocolatey (https://chocolatey.org/)
+    choco install ffmpeg
+
+    # on Windows using Scoop (https://scoop.sh/)
+    scoop install ffmpeg
+
+For more information, refer to the Whisper’s
+[Setup](https://github.com/openai/whisper#setup) documentation.
+
 ## Usage
 
 ### `transcribe()`
@@ -28,7 +54,10 @@ Convert the input audio file into written text using speech recognition,
 while preserving the language of the original audio:
 
 ``` r
-transcribe("sample-english.mp3", output_dir = ".")
+library(audrey)
+
+transcribe(system.file("extdata", "sample-english1.mp3",  package = "audrey"),
+           output_dir = ".")
 ```
 
 ### `translate()`
@@ -38,10 +67,11 @@ originally spoken in a non-English language:
 
 ``` r
 # Korean to English
-translate("sample-korean.mp3", audio_lang = "Korean", output_dir = ".")
+translate(system.file("extdata", "sample-korean.wav",  package = "audrey"),
+          audio_lang = "Korean", output_dir = ".")
 ```
 
 ## Acknowledgements
 
-- OpenAI Whisper model
+- OpenAI [Whisper model](https://github.com/openai/whisper)
 - Source of audio files: <https://commonvoice.mozilla.org/en/datasets>

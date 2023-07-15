@@ -34,15 +34,17 @@ translate(
 A message indicating whether the function was a success or failure
 }
 \description{
-Translate audio in a different language to English.
+Convert audio spoken in a non-English language into English through translation.
 }
 \examples{
 \dontrun{
 # Korean to English
-translate("sample-korean.mp3", audio_lang = "Korean", output_dir = ".")
+korean <- system.file("extdata", "sample-korean.wav", package = "audrey")
+translate(korean, audio_lang = "Korean", output_dir = ".")
 
 # Japanese to English
-translate("sample-japanese.mp3", audio_lang = "Japanese", output_dir = ".")
+japanese <- system.file("extdata", "sample-japanese.wav", package = "audrey")
+translate(japanese, audio_lang = "Japanese", output_dir = ".")
 }
 
 }

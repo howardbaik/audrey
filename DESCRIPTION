@@ -16,3 +16,7 @@ Imports:
     cli,
     tools,
     withr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

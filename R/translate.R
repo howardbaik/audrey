@@ -28,9 +28,11 @@ translate <- function(audio_file,
   use_whisper()
   whisper_path <- getOption("path_to_whisper")
   # Arguments to model
-  whisper_args <- paste0(audio_file, " ", "--model", " ", model_name, " ",
-                         "--fp16 False", " ", "--language", " ", audio_lang, " ",
-                         "--task translate", " ", "--output_dir", " ", output_dir, " ",
+  whisper_args <- paste0(audio_file, " ", "--model", " ",
+                         model_name, " ", "--fp16 False", " ",
+                         "--language", " ", audio_lang, " ",
+                         "--task translate", " ",
+                         "--output_dir", " ", output_dir, " ",
                          "--output_format", " ", output_format)
   # store error code (0 for success)
   res <- withr::with_path(process_whisper_path(whisper_path),

@@ -5,7 +5,7 @@
 #'
 #' @inheritParams transcribe
 #'
-#' @return A message indicating whether the function was a success or failure
+#' @return A character vector of text
 #' @export
 #'
 #' @examples
@@ -46,7 +46,7 @@ translate <- function(audio_file,
 
   # user message
   cli::cli_alert_success("Successfully translated {audio_lang} in '{audio_file}' to English")
-  cli::cli_alert_info("Stored output in '{output_name}'")
+  cli::cli_alert_info("Stored the following output in '{output_name}'")
 
   res
 }

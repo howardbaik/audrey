@@ -26,7 +26,7 @@
 #' section in the README for the names of the available models and their
 #' approximate memory requirements and relative speed.
 #'
-#' @return A message indicating whether the function was a success or failure
+#' @return A character vector of text
 #' @export
 #'
 #' @examples
@@ -36,7 +36,7 @@
 #' english2 <- system.file("extdata", "sample-english2.mp3", package = "audrey")
 #'
 #' # "Other forms of moral economy are more informal"
-#' transcribe(english2, output_dir = ".")
+#' transcribe(english1, output_dir = ".")
 #'
 #' # "It is so named because it was designed and
 #' #  implemented in Dartmouth College"
@@ -78,7 +78,7 @@ transcribe <- function(audio_file,
 
   # user message
   cli::cli_alert_success("Successfully transcribed speech in '{audio_file}'")
-  cli::cli_alert_info("Stored output in '{output_name}'")
+  cli::cli_alert_info("Stored the following output in '{output_name}'")
 
   res
 }

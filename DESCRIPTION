@@ -1,10 +1,12 @@
 Package: audrey
-Title: What the Package Does (One Line, Title Case)
+Title: Client for the OpenAI's 'Whisper' Model
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Howard", "Baek", , "howardbaek.fh@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0000-8942-1618"))
+Description: Perform speech recognition by converting spoken language from audio file into 
+     written text in its original language. Also, translate audio spoken in a non-English language
+     into English.
 License: MIT + file LICENSE
 URL: https://github.com/howardbaek/audrey
 BugReports: https://github.com/howardbaek/audrey/issues
@@ -18,5 +20,7 @@ Imports:
     withr
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
+Config/testthat/edition: 3
